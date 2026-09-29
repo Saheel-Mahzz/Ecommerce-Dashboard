@@ -11,6 +11,7 @@ import Link from "next/link";
 import { EyeIcon } from "lucide-react";
 import { PaginationCount } from "@/components/pagination";
 import { getPageOffset } from "@/components/list/utils/getPageOffset";
+import Image from "next/image";
 
 const columns: IColumn<Product>[] = [
   {
@@ -20,7 +21,19 @@ const columns: IColumn<Product>[] = [
   },
   { accessorKey: "title", header: "Name" },
   { accessorKey: "price", header: "Price (Rs.)" },
-  { accessorKey: "image", header: "Image" },
+  {
+    accessorKey: "image",
+    header: "Image",
+    cell: (row) => (
+      <Image
+        src={row?.image}
+        alt="product"
+        width={50}
+        height={50}
+        className="rounded-2xl"
+      />
+    ),
+  },
   {
     accessorKey: "description",
     header: "Description",

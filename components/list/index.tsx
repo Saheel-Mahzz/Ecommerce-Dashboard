@@ -38,7 +38,7 @@ export function List<T extends object>({
   if (rows.length === 0)
     return (
       <div className="flex items-center justify-center text-3xl mt-7">
-        No bookings yet...
+        No Products yet...
       </div>
     );
   return (
