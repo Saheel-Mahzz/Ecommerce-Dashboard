@@ -19,7 +19,7 @@ export function PaginationCount({ totalCount }: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const ITEMS_PER_PAGE = 5;
+  const ITEMS_PER_PAGE = 20;
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   const handlePageChange = (newPageNumber: number) => {

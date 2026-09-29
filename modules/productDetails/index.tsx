@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ProductDetails() {
+export default async function ProductDetails() {
   return <div>I am product details</div>;
 }

@@ -3,16 +3,38 @@ import React from "react";
 import { Product } from "./types/product.types";
 import { List } from "@/components/list";
 import { PaginationCount } from "@/components/pagination";
+import getProducts from "./api/getProducts";
+import Link from "next/link";
+import { EyeIcon } from "lucide-react";
 
-export default function Products() {
-  const columns: IColumn<Product> = [
+export default async function Products({
+  search,
+}: {
+  search: {
+    [key: string]: string | undefined | string[];
+  };
+}) {
+  console.log("search product", search);
+  // const response = await getProducts(search);
+  const response = await getProducts();
+  console.log("response", response?.data);
+  const allProducts = response.data || [];
+  const count = response.totalProducts || 0;
+  const columns: IColumn<Product>[] = [
     {
-      accessorKey: "name",
+      header: "S.N.",
+      accessorKey: "",
+      cell: (_, index) => {
+        return <span>{(index || 0) + 1}</span>;
+      },
+    },
+    {
+      accessorKey: "title",
       header: "Name",
     },
     {
       accessorKey: "price",
-      header: "Price",
+      header: "Price (Rs.)",
     },
     {
       accessorKey: "image",
@@ -21,6 +43,10 @@ export default function Products() {
     {
       accessorKey: "description",
       header: "Description",
+      cell: (row) => {
+        const desc = row?.description;
+        return <p>{desc.substring(0, 20)}...</p>;
+      },
     },
     {
       accessorKey: "category",
@@ -30,40 +56,22 @@ export default function Products() {
       accessorKey: "rating",
       header: "Rating",
     },
-  ];
-
-  const rows: Product[] = [
     {
-      name: "saheel",
-      price: "200",
-      image: "8833",
-      description: "This is a description",
-      category: "Best",
-      rating: "7",
-    },
-    {
-      name: "saheel",
-      price: "200",
-      image: "8833",
-      description: "This is a description",
-      category: "Best",
-      rating: "7",
-    },
-
-    {
-      name: "saheel",
-      price: "200",
-      image: "8833",
-      description: "This is a description",
-      category: "Best",
-      rating: "7",
+      accessorKey: "",
+      header: "Actions",
+      cell: (row) => (
+        <Link href={`/products/${row?._id}`}>
+          <EyeIcon />
+        </Link>
+      ),
     },
   ];
+
   return (
     <div className="max-w-5xl mx-auto w-full my-7">
       <h2 className="text-3xl font-semibold text-center">Products</h2>
-      <List rows={rows} columns={columns} />
-      <PaginationCount totalCount={20} />
+      <List rows={allProducts} columns={columns} />
+      <PaginationCount totalCount={count} />
     </div>
   );
 }
