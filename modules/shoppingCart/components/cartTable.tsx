@@ -15,7 +15,8 @@ export type ICartItem = {
 };
 
 export default function CartTable() {
-  const { removeProduct } = useCartStore();
+  const { removeProduct, updateProduct, products } = useCartStore();
+  console.log("products", products);
   const cartColumns: IColumn<ICartItem>[] = [
     {
       header: "",
@@ -36,7 +37,7 @@ export default function CartTable() {
       cell: (row) => (
         <div className="flex items-center gap-3">
           <div className="h-12 w-12 bg-gray-100 rounded overflow-hidden"></div>
-          <span className="font-medium text-gray-900">{row.name}</span>
+          <span className="font-medium text-gray-900">{row.title}</span>
         </div>
       ),
     },
@@ -50,13 +51,21 @@ export default function CartTable() {
       accessorKey: "",
       cell: (row) => (
         <div className="flex items-center border rounded-md w-max px-2 py-1 gap-3">
-          <button className="text-gray-500 hover:text-black">
+          <button
+            className="text-gray-500 hover:text-black"
+            onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) - 1)}
+          >
             <Minus className="h-3 w-3" />
           </button>
+
           <span className="text-xs font-semibold">
-            {String(row.quantity).padStart(2, "0")}
+            {String(row?.quantity || 1).padStart(2, "0")}
           </span>
-          <button className="text-gray-500 hover:text-black">
+
+          <button
+            className="text-gray-500 hover:text-black"
+            onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) + 1)}
+          >
             <Plus className="h-3 w-3" />
           </button>
         </div>
@@ -91,7 +100,7 @@ export default function CartTable() {
   return (
     <div className="max-w-7xl mx-auto w-full">
       <h2 className="text-3xl font-bold text-center">Shopping Cart</h2>
-      <List columns={cartColumns} rows={sampleCartData} />
+      <List columns={cartColumns} rows={products} />
     </div>
   );
 }
