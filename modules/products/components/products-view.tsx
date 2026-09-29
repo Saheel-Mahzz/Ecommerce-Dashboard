@@ -115,7 +115,7 @@ export function ProductsView({
           startIndex={getPageOffset(search)}
         />
       ) : (
-        <ProductGrid products={products} />
+        <ProductGrid products={filteredProducts} />
       )}
 
       <PaginationCount totalCount={count} />
