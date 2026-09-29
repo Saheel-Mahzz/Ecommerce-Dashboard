@@ -1,5 +1,6 @@
 import React from "react";
+import CartTable from "./components/cartTable";
 
 export default function ShoppingCart() {
-  return <div>I am shopping cart</div>;
+  return <CartTable />;
 }

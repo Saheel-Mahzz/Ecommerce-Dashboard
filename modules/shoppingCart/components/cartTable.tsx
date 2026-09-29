@@ -1,0 +1,97 @@
+"use client";
+
+import { List } from "@/components/list";
+import { IColumn } from "@/components/list/types/columns";
+import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/stores/useCartStore";
+import { Minus, Plus, X } from "lucide-react";
+
+export type ICartItem = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
+};
+
+export default function CartTable() {
+  const { removeProduct } = useCartStore();
+  const cartColumns: IColumn<ICartItem>[] = [
+    {
+      header: "",
+      accessorKey: "",
+      cell: (row) => (
+        <Button
+          variant="outline"
+          className="cursor-pointer"
+          onClick={() => removeProduct?.(row)}
+        >
+          <X className="h-4 w-4" />
+        </Button>
+      ),
+    },
+    {
+      header: "Products",
+      accessorKey: "",
+      cell: (row) => (
+        <div className="flex items-center gap-3">
+          <div className="h-12 w-12 bg-gray-100 rounded overflow-hidden"></div>
+          <span className="font-medium text-gray-900">{row.name}</span>
+        </div>
+      ),
+    },
+    {
+      header: "Price",
+      accessorKey: "",
+      cell: (row) => `Rs. ${row.price.toFixed(2)}`,
+    },
+    {
+      header: "Quantity",
+      accessorKey: "",
+      cell: (row) => (
+        <div className="flex items-center border rounded-md w-max px-2 py-1 gap-3">
+          <button className="text-gray-500 hover:text-black">
+            <Minus className="h-3 w-3" />
+          </button>
+          <span className="text-xs font-semibold">
+            {String(row.quantity).padStart(2, "0")}
+          </span>
+          <button className="text-gray-500 hover:text-black">
+            <Plus className="h-3 w-3" />
+          </button>
+        </div>
+      ),
+    },
+    {
+      header: "Subtotal",
+      accessorKey: "",
+      cell: (row) => (
+        <span className="font-semibold text-gray-900">
+          Rs. {(row.price * row.quantity).toFixed(2)}
+        </span>
+      ),
+    },
+  ];
+  const sampleCartData = [
+    {
+      id: "1",
+      name: "Sofa For Living Room",
+      image: "/placeholder.jpg",
+      price: 250,
+      quantity: 1,
+    },
+    {
+      id: "2",
+      name: "Sofa For Living Room",
+      image: "/placeholder.jpg",
+      price: 250,
+      quantity: 1,
+    },
+  ];
+  return (
+    <div className="max-w-7xl mx-auto w-full">
+      <h2 className="text-3xl font-bold text-center">Shopping Cart</h2>
+      <List columns={cartColumns} rows={sampleCartData} />
+    </div>
+  );
+}
