@@ -3,21 +3,14 @@
 import { List } from "@/components/list";
 import { IColumn } from "@/components/list/types/columns";
 import { Button } from "@/components/ui/button";
+import { Product } from "@/modules/products/types/product.types";
 import { useCartStore } from "@/stores/useCartStore";
 import { Minus, Plus, X } from "lucide-react";
-
-export type ICartItem = {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  quantity: number;
-};
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
   console.log("products", products);
-  const cartColumns: IColumn<ICartItem>[] = [
+  const cartColumns: IColumn<Product>[] = [
     {
       header: "",
       accessorKey: "",
@@ -76,27 +69,12 @@ export default function CartTable() {
       accessorKey: "",
       cell: (row) => (
         <span className="font-semibold text-gray-900">
-          Rs. {(row.price * row.quantity).toFixed(2)}
+          Rs. {(row.price * (row.quantity || 1)).toFixed(2)}
         </span>
       ),
     },
   ];
-  const sampleCartData = [
-    {
-      id: "1",
-      name: "Sofa For Living Room",
-      image: "/placeholder.jpg",
-      price: 250,
-      quantity: 1,
-    },
-    {
-      id: "2",
-      name: "Sofa For Living Room",
-      image: "/placeholder.jpg",
-      price: 250,
-      quantity: 1,
-    },
-  ];
+
   return (
     <div className="max-w-7xl mx-auto w-full">
       <h2 className="text-3xl font-bold text-center">Shopping Cart</h2>
