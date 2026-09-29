@@ -9,6 +9,7 @@ interface InputElementProps {
   type: string;
   disabled?: boolean;
   defaultValue?: string;
+  onChange?: (value: string) => void;
 }
 export default function InputElement({
   label,
@@ -18,6 +19,7 @@ export default function InputElement({
   placeholder,
   disabled = false,
   defaultValue,
+  onChange,
 }: InputElementProps) {
   return (
     <div className="space-y-2">
@@ -28,6 +30,7 @@ export default function InputElement({
         placeholder={placeholder}
         disabled={disabled}
         defaultValue={defaultValue}
+        onChange={(e) => onChange?.(e.target.value)}
       />
       {err && <span className="text-red-700 text-sm">{err}</span>}
     </div>

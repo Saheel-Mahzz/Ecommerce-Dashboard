@@ -8,6 +8,7 @@ interface ProductFiltersProps {
   setCategory: (value: string) => void;
   maxPrice: number;
   setMaxPrice: (val: number) => void;
+  setSearchQuery: (val: string) => void;
 }
 
 export function ProductFilters({
@@ -15,8 +16,8 @@ export function ProductFilters({
   setCategory,
   maxPrice,
   setMaxPrice,
+  setSearchQuery,
 }: ProductFiltersProps) {
-  console.log("category", categories);
   const categoryOptions =
     categories.map((cat) => {
       return {
@@ -24,9 +25,7 @@ export function ProductFilters({
         label: cat.name,
       };
     }) || [];
-  console.log("category options", categoryOptions);
   return (
-    // <div className="flex max-w-sm items-center gap-2 w-full bg-red-100">
     <div className="grid grid-cols-3  items-center gap-4">
       <SelectElement
         name="category"
@@ -52,8 +51,8 @@ export function ProductFilters({
         label="Search"
         placeholder="Search by name.."
         type="text"
+        onChange={setSearchQuery}
       />
     </div>
-    // </div>
   );
 }
