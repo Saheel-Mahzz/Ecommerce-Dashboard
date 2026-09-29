@@ -1,3 +1,4 @@
+import getCategories from "./api/getCategories";
 import getProducts from "./api/getProducts";
 import { ProductsView } from "./components/products-view";
 
@@ -8,9 +9,16 @@ export default async function Products({
     [key: string]: string | undefined | string[];
   };
 }) {
-  const response = await getProducts();
-  const allProducts = response.data || [];
-  const count = response.totalProducts || 0;
+  const [products, categories] = await Promise.all([
+    getProducts(),
+    getCategories(),
+  ]);
+  const allProducts = products.data || [];
+  const allCategories = categories?.data;
+  const count = products.totalProducts || 0;
+  console.log("all products", allProducts);
+
+  console.log("categories", allCategories);
 
   return (
     <div className="max-w-5xl mx-auto w-full my-7">

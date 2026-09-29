@@ -7,6 +7,7 @@ import { Product } from "@/modules/products/types/product.types";
 import { useCartStore } from "@/stores/useCartStore";
 import { Minus, Plus, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
@@ -84,6 +85,11 @@ export default function CartTable() {
     <div className="max-w-7xl mx-auto w-full">
       <h2 className="text-3xl font-bold text-center">Shopping Cart</h2>
       <List columns={cartColumns} rows={products} />
+      <Link href="/products/">
+        <Button variant="outline" className="w-1/3 cursor-pointer">
+          Update Cart
+        </Button>
+      </Link>
     </div>
   );
 }
