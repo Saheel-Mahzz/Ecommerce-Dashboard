@@ -14,10 +14,8 @@ export default async function Products({
     [key: string]: string | undefined | string[];
   };
 }) {
-  console.log("search product", search);
   // const response = await getProducts(search);
   const response = await getProducts();
-  console.log("response", response?.data);
   const allProducts = response.data || [];
   const count = response.totalProducts || 0;
   const columns: IColumn<Product>[] = [

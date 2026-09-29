@@ -1,6 +1,7 @@
 import ProductDetails from "@/modules/productDetails";
 import React from "react";
 
-export default function page(id: PageProps<"/products/[id]">) {
-  return <ProductDetails />;
+export default async function page(props: PageProps<"/products/[id]">) {
+  const { id } = await props.params;
+  return <ProductDetails id={id} />;
 }
