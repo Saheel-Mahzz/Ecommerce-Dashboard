@@ -10,6 +10,7 @@ import { LayoutGrid, List as ListIcon } from "lucide-react";
 import Link from "next/link";
 import { EyeIcon } from "lucide-react";
 import { PaginationCount } from "@/components/pagination";
+import { getPageOffset } from "@/components/list/utils/getPageOffset";
 
 const columns: IColumn<Product>[] = [
   {
@@ -41,9 +42,11 @@ const columns: IColumn<Product>[] = [
 export function ProductsView({
   products,
   count,
+  search,
 }: {
   products: Product[];
   count: number;
+  search: { [key: string]: string | undefined };
 }) {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
 
@@ -62,7 +65,6 @@ export function ProductsView({
           variant={viewMode === "grid" ? "default" : "outline"}
           size="icon"
           onClick={() => setViewMode("grid")}
-          
           aria-label="Grid view"
         >
           <LayoutGrid className="h-4 w-4" />
@@ -70,11 +72,15 @@ export function ProductsView({
       </div>
 
       {viewMode === "list" ? (
-        <List rows={products} columns={columns} />
+        <List
+          rows={products}
+          columns={columns}
+          startIndex={getPageOffset(search)}
+        />
       ) : (
         <ProductGrid products={products} />
       )}
-      
+
       <PaginationCount totalCount={count} />
     </div>
   );

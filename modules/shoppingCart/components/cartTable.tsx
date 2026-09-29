@@ -44,23 +44,25 @@ export default function CartTable() {
       accessorKey: "",
       cell: (row) => (
         <div className="flex items-center border rounded-md w-max px-2 py-1 gap-3">
-          <button
-            className="text-gray-500 hover:text-black"
+          <Button
+            className="text-gray-500 hover:text-black cursor-pointer"
+            variant="outline"
             onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) - 1)}
           >
             <Minus className="h-3 w-3" />
-          </button>
+          </Button>
 
           <span className="text-xs font-semibold">
             {String(row?.quantity || 1).padStart(2, "0")}
           </span>
 
-          <button
-            className="text-gray-500 hover:text-black"
+          <Button
+            className="text-gray-500 hover:text-black cursor-pointer"
+            variant="outline"
             onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) + 1)}
           >
             <Plus className="h-3 w-3" />
-          </button>
+          </Button>
         </div>
       ),
     },

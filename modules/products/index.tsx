@@ -15,7 +15,7 @@ export default async function Products({
   return (
     <div className="max-w-5xl mx-auto w-full my-7">
       <h2 className="text-3xl font-semibold text-center mb-6">Products</h2>
-      <ProductsView products={allProducts} count={count} />
+      <ProductsView products={allProducts} count={count} search={search} />
     </div>
   );
 }
