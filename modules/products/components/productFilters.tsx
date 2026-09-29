@@ -1,13 +1,20 @@
+import InputElement from "@/components/inputFields/inputElement";
 import { SelectElement } from "@/components/inputFields/selectElement";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 
 interface ProductFiltersProps {
   categories: string[];
   setCategory: (value: string) => void;
+  maxPrice: number;
+  setMaxPrice: (val: number) => void;
 }
 
 export function ProductFilters({
   categories,
   setCategory,
+  maxPrice,
+  setMaxPrice,
 }: ProductFiltersProps) {
   console.log("category", categories);
   const categoryOptions =
@@ -19,7 +26,8 @@ export function ProductFilters({
     }) || [];
   console.log("category options", categoryOptions);
   return (
-    <div className="flex max-w-sm flex-col gap-2">
+    // <div className="flex max-w-sm items-center gap-2 w-full bg-red-100">
+    <div className="grid grid-cols-3  items-center gap-4">
       <SelectElement
         name="category"
         placeholder="Pick the category.."
@@ -27,6 +35,25 @@ export function ProductFilters({
         options={categoryOptions}
         onChange={(_, value) => setCategory(value)}
       />
+      <Label className="flex flex-col text-gray-400">
+        Price Range (Up to Rs. {maxPrice})
+        <Slider
+          defaultValue={[200]}
+          max={2000}
+          step={1}
+          onValueChange={(val) => {
+            const numericValue = Array.isArray(val) ? val[0] : val;
+            setMaxPrice(numericValue);
+          }}
+        />
+      </Label>
+      <InputElement
+        name="name"
+        label="Search"
+        placeholder="Search by name.."
+        type="text"
+      />
     </div>
+    // </div>
   );
 }

@@ -21,7 +21,7 @@ export default function InputElement({
 }: InputElementProps) {
   return (
     <div className="space-y-2">
-      <Label>{label}</Label>
+      <Label className="text-gray-400">{label}</Label>
       <Input
         type={type}
         name={name}

@@ -62,18 +62,32 @@ export function ProductsView({
 }) {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<number>(2000);
   console.log("selected category", selectedCategory);
-  const filteredProducts = products.filter((prod) =>
-    selectedCategory
-      ? selectedCategory?.toLowerCase().includes(prod.category.toLowerCase())
-      : true,
-  );
+  // const filteredProducts = products.filter((prod) =>
+  //   selectedCategory
+  //     ? selectedCategory?.toLowerCase().includes(prod.category.toLowerCase())
+  //     : true,
+  // );
+  const filteredProducts = products.filter((prod) => {
+    // 1. Category Match Check
+    const matchesCategory = selectedCategory
+      ? selectedCategory.toLowerCase().includes(prod.category.toLowerCase())
+      : true;
 
+    // 2. Price Range Check
+    const matchesPrice = prod.price <= maxPrice;
+
+    // Filter pass huna DUBAI true huna parchha
+    return matchesCategory && matchesPrice;
+  });
   return (
     <div className="flex flex-col gap-4">
       <ProductFilters
         categories={categories}
         setCategory={setSelectedCategory}
+        maxPrice={maxPrice}
+        setMaxPrice={setMaxPrice}
       />
 
       <div className="flex justify-end items-center gap-2">
