@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/modules/products/types/product.types";
 import { useCartStore } from "@/stores/useCartStore";
 import { Minus, Plus, X } from "lucide-react";
+import Image from "next/image";
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
@@ -29,7 +30,9 @@ export default function CartTable() {
       accessorKey: "",
       cell: (row) => (
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 bg-gray-100 rounded overflow-hidden"></div>
+          <div className="h-12 w-12 bg-gray-100 rounded overflow-hidden">
+            <Image src={row?.image} alt="product" width={50} height={50} />
+          </div>
           <span className="font-medium text-gray-900">{row.title}</span>
         </div>
       ),

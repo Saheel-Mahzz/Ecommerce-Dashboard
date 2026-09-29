@@ -25,13 +25,9 @@ const columns: IColumn<Product>[] = [
     accessorKey: "image",
     header: "Image",
     cell: (row) => (
-      <Image
-        src={row?.image}
-        alt="product"
-        width={50}
-        height={50}
-        className="rounded-2xl"
-      />
+      <div className="h-12 w-12 bg-gray-100 rounded overflow-hidden">
+        <Image src={row?.image} alt="product" width={50} height={50} />
+      </div>
     ),
   },
   {
