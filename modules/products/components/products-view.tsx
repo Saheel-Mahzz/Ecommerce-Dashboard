@@ -12,6 +12,7 @@ import { EyeIcon } from "lucide-react";
 import { PaginationCount } from "@/components/pagination";
 import { getPageOffset } from "@/components/list/utils/getPageOffset";
 import Image from "next/image";
+import { ProductFilters } from "./productFilters";
 
 const columns: IColumn<Product>[] = [
   {
@@ -50,17 +51,31 @@ const columns: IColumn<Product>[] = [
 
 export function ProductsView({
   products,
+  categories,
   count,
   search,
 }: {
   products: Product[];
+  categories: string[];
   count: number;
   search: { [key: string]: string | undefined };
 }) {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  console.log("selected category", selectedCategory);
+  const filteredProducts = products.filter((prod) =>
+    selectedCategory
+      ? selectedCategory?.toLowerCase().includes(prod.category.toLowerCase())
+      : true,
+  );
 
   return (
     <div className="flex flex-col gap-4">
+      <ProductFilters
+        categories={categories}
+        setCategory={setSelectedCategory}
+      />
+
       <div className="flex justify-end items-center gap-2">
         <Button
           variant={viewMode === "list" ? "default" : "outline"}
@@ -82,7 +97,7 @@ export function ProductsView({
 
       {viewMode === "list" ? (
         <List
-          rows={products}
+          rows={filteredProducts}
           columns={columns}
           startIndex={getPageOffset(search)}
         />
