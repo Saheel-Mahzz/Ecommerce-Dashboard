@@ -78,7 +78,6 @@ export function ProductsView({
 
     return matchesCategory && matchesPrice && matchesName;
   });
-  console.log("all products", products);
   return (
     <div className="flex flex-col gap-4">
       <ProductFilters

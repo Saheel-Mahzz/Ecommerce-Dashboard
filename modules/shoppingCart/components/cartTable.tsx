@@ -11,7 +11,6 @@ import Link from "next/link";
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
-  console.log("products", products);
   const cartColumns: IColumn<Product>[] = [
     {
       header: "",
