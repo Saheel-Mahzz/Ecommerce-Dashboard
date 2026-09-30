@@ -9,3 +9,9 @@ export interface Product {
   category: string;
   rating: string;
 }
+
+export interface Category {
+  description: string;
+  name: string;
+  _id: string;
+}

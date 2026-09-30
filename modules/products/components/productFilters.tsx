@@ -2,9 +2,10 @@ import InputElement from "@/components/inputFields/inputElement";
 import { SelectElement } from "@/components/inputFields/selectElement";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { Category } from "../types/product.types";
 
 interface ProductFiltersProps {
-  categories: string[];
+  categories: Category[];
   setCategory: (value: string) => void;
   maxPrice: number;
   setMaxPrice: (val: number) => void;

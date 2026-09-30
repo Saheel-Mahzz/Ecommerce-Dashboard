@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Product } from "../types/product.types";
+import { Category, Product } from "../types/product.types";
 import { List } from "@/components/list";
 import { IColumn } from "@/components/list/types/columns";
 import { ProductGrid } from "./product-grid";
@@ -56,7 +56,7 @@ export function ProductsView({
   search,
 }: {
   products: Product[];
-  categories: string[];
+  categories: Category[];
   count: number;
   search: { [key: string]: string | undefined };
 }) {
