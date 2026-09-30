@@ -43,7 +43,7 @@ export function List<T extends object>({
     );
   return (
     <>
-      <div className="rounded-2xl border bg-white shadow-sm overflow-hidden my-7">
+      <div className="hidden md:block rounded-2xl border bg-white shadow-sm overflow-hidden my-7 ">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50 hover:bg-muted/50">
@@ -82,6 +82,31 @@ export function List<T extends object>({
             ))}
           </TableBody>
         </Table>
+      </div>
+      <div className="block md:hidden space-y-4 my-7">
+        {rows.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className="rounded-xl border bg-white p-4 shadow-sm space-y-3"
+          >
+            {columns.map((col, colIndex) => (
+              <div
+                key={colIndex}
+                className="flex justify-between items-center text-sm border-b last:border-none pb-2 last:pb-0"
+              >
+                <span className="font-semibold text-slate-500 uppercase text-xs">
+                  {col?.header}
+                </span>
+
+                <span className="text-slate-700 text-right">
+                  {col?.cell
+                    ? col.cell?.(row, rowIndex + (startIndex ?? 0))
+                    : getNestedValue(row, col?.accessorKey as string)}
+                </span>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </>
   );
