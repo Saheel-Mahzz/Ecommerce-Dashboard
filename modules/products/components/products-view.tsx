@@ -9,6 +9,7 @@ import { PaginationCount } from "@/components/pagination";
 import { getPageOffset } from "@/components/list/utils/getPageOffset";
 import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
+import filterProducts from "@/lib/filters/filterProducts";
 
 export function ProductsView({
   products,
@@ -25,19 +26,10 @@ export function ProductsView({
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<number>(2000);
   const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const filteredProducts = products.filter((prod) => {
-    const matchesCategory = selectedCategory
-      ? selectedCategory.toLowerCase().includes(prod.category.toLowerCase())
-      : true;
-
-    const matchesPrice = prod.price <= maxPrice;
-
-    const matchesName = searchQuery
-      ? prod.title.toLowerCase().includes(searchQuery.toLowerCase().trim())
-      : true;
-
-    return matchesCategory && matchesPrice && matchesName;
+  const filteredProducts = filterProducts(products, {
+    maxPrice,
+    category: selectedCategory,
+    searchQuery,
   });
   return (
     <div className="flex flex-col gap-4">
