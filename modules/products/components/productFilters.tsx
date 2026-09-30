@@ -27,7 +27,7 @@ export function ProductFilters({
       };
     }) || [];
   return (
-    <div className="grid grid-cols-3  items-center gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-start gap-4">
       <SelectElement
         name="category"
         placeholder="Pick the category.."

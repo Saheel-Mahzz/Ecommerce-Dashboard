@@ -8,6 +8,7 @@ import { useCartStore } from "@/stores/useCartStore";
 import { Minus, Plus, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
@@ -19,7 +20,10 @@ export default function CartTable() {
         <Button
           variant="outline"
           className="cursor-pointer"
-          onClick={() => removeProduct?.(row)}
+          onClick={() => {
+            removeProduct?.(row);
+            toast.success(`${row?.title} successfully removed!`);
+          }}
         >
           <X className="h-4 w-4" />
         </Button>
