@@ -17,7 +17,7 @@ export function ServiceSlider() {
       }}
     >
       <CarouselContent className="-ml-4">
-        <CarouselItem className="pl-4 basis-[75%] md:basis-2/3">
+        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
           <Image
             src="/images/service-1.png"
             width={1000}
@@ -28,7 +28,7 @@ export function ServiceSlider() {
         </CarouselItem>
 
         {/* 2nd Card: Remaining space ma aafnai AADHA (HALF) matrai peeking part dekhincha */}
-        <CarouselItem className="pl-4 basis-[75%] md:basis-2/3">
+        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
           <Image
             src="/images/service-1.png"
             width={1000}
@@ -37,7 +37,7 @@ export function ServiceSlider() {
             className="w-full h-auto object-cover rounded-2xl"
           />
         </CarouselItem>
-        <CarouselItem className="pl-4 basis-[75%] md:basis-2/3">
+        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
           <Image
             src="/images/service-1.png"
             width={1000}
@@ -46,7 +46,7 @@ export function ServiceSlider() {
             className="w-full h-auto object-cover rounded-2xl"
           />
         </CarouselItem>
-        <CarouselItem className="pl-4 basis-[75%] md:basis-2/3">
+        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
           <Image
             src="/images/service-1.png"
             width={1000}

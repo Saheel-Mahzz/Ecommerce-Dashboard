@@ -6,7 +6,7 @@ import RotatingText from "./components/rotatingText";
 
 export default function Services() {
   return (
-    <div className="w-full max-w-7xl ml-auto space-y-28 overflow-hidden ">
+    <div className="w-full max-w-7xl ml-auto space-y-48 overflow-hidden ">
       <div className="grid grid-cols-2 ">
         <div className="px-1 font-medium text-4xl leading-[49px] ">
           <p>

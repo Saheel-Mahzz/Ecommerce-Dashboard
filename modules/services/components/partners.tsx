@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Partners() {
   return (
-    <div className="flex flex-col space-y-9">
+    <div className="flex flex-col space-y-9 max-w-[1058px] mx-auto">
       <h3 className="text-2xl font-bold text-center">Our Partners</h3>
       <div className="grid grid-cols-4">
         <Image
@@ -14,19 +14,19 @@ export default function Partners() {
         <Image
           src="/images/cmc.png"
           alt="Hero Banner"
-          width={102}
+          width={140}
           height={74}
         />
         <Image
           src="/images/snp.png"
           alt="Hero Banner"
-          width={102}
+          width={140}
           height={74}
         />
         <Image
           src="/images/zebec.png"
           alt="Hero Banner"
-          width={102}
+          width={140}
           height={74}
         />
       </div>
