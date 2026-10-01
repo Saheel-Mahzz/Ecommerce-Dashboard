@@ -15,7 +15,6 @@ export function ServiceSlider() {
         loop: false,
         dragFree: true,
       }}
-      className="w-full max-w-7xl ml-auto"
     >
       <CarouselContent className="-ml-4">
         <CarouselItem className="pl-4 basis-[75%] md:basis-2/3">

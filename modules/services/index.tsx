@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import Partners from "./components/partners";
 import { ServiceSlider } from "./components/serviceSlider";
+import RotatingText from "./components/rotatingText";
 
 export default function Services() {
   return (
-    <div className="w-full max-w-7xl ml-auto space-y-28 ">
+    <div className="w-full max-w-7xl ml-auto space-y-28 overflow-hidden ">
       <div className="grid grid-cols-2 ">
         <div className="px-1 font-medium text-4xl leading-[49px] ">
           <p>
@@ -17,9 +18,10 @@ export default function Services() {
           </Button>
         </div>
         <div className="font-bold text-5xl leading-normal tracking-tight ">
-          <p>UI & UX</p>
+          {/* <p>UI & UX</p>
           <p>Development</p>
-          <p>Blockchain</p>
+          <p>Blockchain</p> */}
+          <RotatingText />
         </div>
       </div>
       <ServiceSlider />
