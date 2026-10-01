@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Plus } from "lucide-react";
 import UpcomingCourses from "./components/upcomingCourses";
 import Image from "next/image";
+import CourseCards from "./components/courseCards";
 
 export default function Courses() {
   return (
@@ -61,6 +62,7 @@ export default function Courses() {
         <UpcomingCourses />
         <UpcomingCourses />
       </div>
+      <CourseCards />
     </div>
   );
 }
