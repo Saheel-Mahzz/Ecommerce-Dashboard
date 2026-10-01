@@ -40,9 +40,7 @@ export default function MultiLineRollingText() {
 // Reusable Single Line Rolling Slot Component
 function RollingSlot({ text, active }: { text: string; active: boolean }) {
   return (
-    <div
-      className={`relative overflow-hidden h-[1.2em] flex items-center [perspective:1000px] `}
-    >
+    <div className={`relative overflow-hidden h-[1.2em] flex items-center  `}>
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
           key={text}
@@ -54,7 +52,7 @@ function RollingSlot({ text, active }: { text: string; active: boolean }) {
             duration: 0.7,
             ease: [0.16, 1, 0.3, 1], // Luxury smooth easing curve
           }}
-          className="origin-center [transform-style:preserve-3d]"
+          className="origin-center "
         >
           {text}
         </motion.div>

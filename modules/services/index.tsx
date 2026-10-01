@@ -6,23 +6,18 @@ import RotatingText from "./components/rotatingText";
 
 export default function Services() {
   return (
-    <div className="w-full max-w-7xl ml-auto space-y-48 overflow-hidden ">
-      <div className="grid grid-cols-2 ">
-        <div className="px-1 font-medium text-4xl leading-[49px] ">
+    <div className="w-full max-w-7xl ml-auto space-y-4 md:space-y-48 overflow-hidden ">
+      <div className="grid md:grid-cols-2 ">
+        <div className="px-1 font-medium text-2xl md:text-4xl md:leading-[49px] text-balance ">
           <p>
             Experience our expert solutions tailored to enhance your business
             with top-tier design, development, and animation.
           </p>
-          <Button className="bg-blue-500 rounded-3xl mt-16 w-28 p-6">
+          <Button className="bg-blue-500 rounded-3xl md:mt-16 w-28 p-6">
             Services
           </Button>
         </div>
-        <div className="font-bold text-5xl leading-normal tracking-tight ">
-          {/* <p>UI & UX</p>
-          <p>Development</p>
-          <p>Blockchain</p> */}
-          <RotatingText />
-        </div>
+        <RotatingText />
       </div>
       <ServiceSlider />
       <Partners />
