@@ -49,22 +49,21 @@ export default function CourseCards() {
   const [activeId, setActiveId] = useState("all-courses");
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6">
-      {/* 10 Columns Grid Strategy: Big (6 cols) + Small (2 cols) + Small (2 cols) = 10 */}
-      <div className="grid grid-cols-12 gap-6 items-start">
+    <div className="w-full max-w-7xl mx-auto p-4 md:p-6">
+      <div className="grid grid-cols-12 gap-4 md:gap-6 items-start">
         {CARDS_DATA.map((card) => {
           const isBig = activeId === card.id;
 
           return (
             <motion.div
               key={card.id}
-              layout // Framer Motion smooth width/layout transition
+              layout
               transition={{ type: "spring", stiffness: 220, damping: 25 }}
               onClick={() => setActiveId(card.id)}
-              className={`cursor-pointer rounded-4xl p-9 transition-colors duration-300 ${
+              className={`cursor-pointer rounded-3xl md:rounded-4xl p-6 md:p-9 transition-colors duration-300 ${
                 isBig
-                  ? "col-span-6 bg-red-800 text-white flex flex-col space-y-12"
-                  : "col-span-3 bg-[#fbf0ef] text-red-800 flex flex-col justify-between h-[480px]"
+                  ? "col-span-12 md:col-span-6 bg-red-800 text-white flex flex-col space-y-8 md:space-y-12"
+                  : "col-span-12 sm:col-span-6 md:col-span-3 bg-[#fbf0ef] text-red-800 flex flex-col justify-between h-auto md:h-[420px]"
               }`}
             >
               <AnimatePresence mode="popLayout">
@@ -75,7 +74,7 @@ export default function CourseCards() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex flex-col space-y-12 w-full"
+                    className="flex flex-col space-y-8 md:space-y-12 w-full"
                   >
                     {/* Top Action Button */}
                     <div className="flex items-center justify-end">
@@ -89,28 +88,32 @@ export default function CourseCards() {
                     </div>
 
                     {/* Tech / Category Icons */}
-                    <div className="grid grid-cols-4 gap-4 items-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center">
                       {card.icons.map((icon, idx) => (
                         <Image
                           key={idx}
                           src={icon}
                           alt="tech-icon"
-                          width={100}
-                          height={100}
-                          className="object-contain"
+                          width={80}
+                          height={80}
+                          className="object-contain w-16 h-16 md:w-20 md:h-20"
                         />
                       ))}
                     </div>
 
                     {/* Bottom Number + Title */}
-                    <div className="flex space-x-6 items-center pt-4">
-                      <h3 className="font-bold text-[140px] leading-none flex items-start">
+                    <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6 items-start sm:items-center pt-2 md:pt-4">
+                      <h3 className="font-bold text-7xl sm:text-8xl md:text-[120px] leading-none flex items-start">
                         {card.count}
-                        <span className="text-6xl font-bold -mt-1">+</span>
+                        <span className="text-4xl sm:text-6xl font-bold -mt-1">
+                          +
+                        </span>
                       </h3>
                       <div className="flex flex-col space-y-1">
-                        <p className="font-bold text-2xl">{card.title}</p>
-                        <span className="text-sm opacity-90 max-w-xs">
+                        <p className="font-bold text-xl md:text-2xl">
+                          {card.title}
+                        </p>
+                        <span className="text-xs md:text-sm opacity-90 max-w-xs">
                           {card.subtitle}
                         </span>
                       </div>
@@ -123,22 +126,24 @@ export default function CourseCards() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex flex-col gap-7"
+                    className="flex flex-row md:flex-col justify-between  md:justify-start gap-4 md:gap-7 items-center md:items-start w-full"
                   >
-                    {/* Vertical Rotating Title Section */}
-                    <div className="flex flex-col justify-center [writing-mode:vertical-rl] rotate-180 max-h-[220px] gap-2 ">
-                      <h3 className="font-bold text-3xl leading-none">
+                    {/* Vertical Title for Desktop / Horizontal for Mobile */}
+                    <div className="flex flex-col justify-center md:[writing-mode:vertical-rl] md:rotate-180 md:max-h-[220px] gap-1 md:gap-2">
+                      <h3 className="font-bold text-xl md:text-3xl  leading-tight md:leading-none">
                         {card.title}
                       </h3>
-                      <p className="text-sm opacity-80 ">{card.subtitle}</p>
+                      <p className="text-xs md:text-sm opacity-80">
+                        {card.subtitle}
+                      </p>
                     </div>
 
                     {/* Small Number & Plus Icon */}
-                    <div className="flex items-start mt-auto">
-                      <span className="text-[140px] font-bold leading-none tracking-tight">
+                    <div className="flex items-start md:mt-auto">
+                      <span className="text-5xl sm:text-7xl md:text-[120px] font-bold leading-none tracking-tight">
                         {card.count}
                       </span>
-                      <Plus className="mt-1" size={32} strokeWidth={3} />
+                      <Plus className="mt-1" size={24} strokeWidth={3} />
                     </div>
                   </motion.div>
                 )}
