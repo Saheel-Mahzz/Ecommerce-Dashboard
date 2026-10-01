@@ -51,7 +51,7 @@ export default function CourseCards() {
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
       {/* 10 Columns Grid Strategy: Big (6 cols) + Small (2 cols) + Small (2 cols) = 10 */}
-      <div className="grid grid-cols-10 gap-6 items-start">
+      <div className="grid grid-cols-12 gap-6 items-start">
         {CARDS_DATA.map((card) => {
           const isBig = activeId === card.id;
 
@@ -64,7 +64,7 @@ export default function CourseCards() {
               className={`cursor-pointer rounded-4xl p-9 transition-colors duration-300 ${
                 isBig
                   ? "col-span-6 bg-red-800 text-white flex flex-col space-y-12"
-                  : "col-span-2 bg-[#fbf0ef] text-red-800 flex flex-col justify-between h-[480px]"
+                  : "col-span-3 bg-[#fbf0ef] text-red-800 flex flex-col justify-between h-[480px]"
               }`}
             >
               <AnimatePresence mode="popLayout">
@@ -95,8 +95,8 @@ export default function CourseCards() {
                           key={idx}
                           src={icon}
                           alt="tech-icon"
-                          width={80}
-                          height={80}
+                          width={100}
+                          height={100}
                           className="object-contain"
                         />
                       ))}
@@ -123,19 +123,19 @@ export default function CourseCards() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex flex-col justify-between h-full w-full"
+                    className="flex flex-col gap-7"
                   >
                     {/* Vertical Rotating Title Section */}
-                    <div className="flex flex-col [writing-mode:vertical-rl] rotate-180 max-h-[220px]">
+                    <div className="flex flex-col justify-center [writing-mode:vertical-rl] rotate-180 max-h-[220px] gap-2 ">
                       <h3 className="font-bold text-3xl leading-none">
                         {card.title}
                       </h3>
-                      <p className="text-sm opacity-80 mt-2">{card.subtitle}</p>
+                      <p className="text-sm opacity-80 ">{card.subtitle}</p>
                     </div>
 
                     {/* Small Number & Plus Icon */}
                     <div className="flex items-start mt-auto">
-                      <span className="text-[100px] font-bold leading-none tracking-tight">
+                      <span className="text-[140px] font-bold leading-none tracking-tight">
                         {card.count}
                       </span>
                       <Plus className="mt-1" size={32} strokeWidth={3} />

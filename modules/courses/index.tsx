@@ -1,14 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Plus } from "lucide-react";
-import UpcomingCourses from "./components/upcomingCourses";
-import Image from "next/image";
 import CourseCards from "./components/courseCards";
 
 export default function Courses() {
   return (
-    <div className="flex flex-col space-y-9 max-w-6xl mx-auto text-white">
-      <div className="text-black">
-        <p className="text-2xl">
+    <div className="flex flex-col space-y-7 max-w-7xl mx-auto text-white">
+      <div className="text-black px-4">
+        <p className="text-2xl mb-4">
           Explore our classes and master trending skills!
         </p>
         <p className="font-bold text-3xl">
@@ -16,7 +12,7 @@ export default function Courses() {
           <span className="text-green-600">What’s Hot Right Now!</span> 🔥
         </p>
       </div>
-      <div className="grid grid-cols-12 gap-6 w-full">
+      {/* <div className="grid grid-cols-12 gap-6 w-full">
         <div className="bg-red-800 p-9 rounded-4xl col-span-6 flex flex-col space-y-16">
           <div className="flex items-center justify-end text-white ">
             <Button
@@ -61,7 +57,7 @@ export default function Courses() {
         </div>
         <UpcomingCourses />
         <UpcomingCourses />
-      </div>
+      </div> */}
       <CourseCards />
     </div>
   );
