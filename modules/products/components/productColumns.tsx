@@ -5,10 +5,14 @@ import Link from "next/link";
 import { EyeIcon } from "lucide-react";
 
 export const productColumns: IColumn<Product>[] = [
+  // {
+  //   header: "S.N.",
+  //   accessorKey: "",
+  //   cell: (_, index) => <span>{(index || 0) + 1}</span>,
+  // },
   {
     header: "S.N.",
-    accessorKey: "",
-    cell: (_, index) => <span>{(index || 0) + 1}</span>,
+    accessorKey: "id",
   },
   {
     accessorKey: "title",

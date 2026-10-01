@@ -10,6 +10,7 @@ import { getPageOffset } from "@/components/list/utils/getPageOffset";
 import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
 import filterProducts from "@/lib/filters/filterProducts";
+import { usePathname, useRouter } from "next/navigation";
 
 export function ProductsView({
   products,
@@ -22,6 +23,8 @@ export function ProductsView({
   count: number;
   search: { [key: string]: string | undefined };
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<number>(2000);
@@ -32,7 +35,14 @@ export function ProductsView({
     searchQuery,
   });
 
-  console.log("filtered products", filteredProducts);
+  const handleSorting = (value: string) => {
+    const params = new URLSearchParams();
+    if (value.trim()) {
+      params.set("sort", value);
+    }
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <ProductFilters
@@ -59,6 +69,9 @@ export function ProductsView({
           aria-label="Grid view"
         >
           <LayoutGrid className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" onClick={() => handleSorting("desc")}>
+          sort
         </Button>
       </div>
 

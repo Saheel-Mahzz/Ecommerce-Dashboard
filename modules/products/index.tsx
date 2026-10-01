@@ -10,12 +10,11 @@ export default async function Products({
   };
 }) {
   const [products, categories] = await Promise.all([
-    getProducts(),
+    getProducts(search.sort),
     getCategories(),
   ]);
   const allProducts = products || [];
 
-  console.log("produdct", products);
   const allCategories = categories || [];
   const count = products.totalProducts || 0;
   return (

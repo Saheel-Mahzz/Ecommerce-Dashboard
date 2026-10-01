@@ -9,7 +9,6 @@ export default async function getCategories(): Promise<
   );
 
   if (!res.ok) {
-    console.log("err", res);
   }
   return res.json();
 }

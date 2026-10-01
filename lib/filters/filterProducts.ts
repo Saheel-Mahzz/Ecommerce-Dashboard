@@ -13,7 +13,7 @@ export default function filterProducts(
 
   return products.filter((prod) => {
     const matchesCategory = category
-      ? category.toLowerCase().includes(prod.category.toLowerCase())
+      ? prod.category.toLowerCase() === category.toLowerCase()
       : true;
 
     const matchesPrice = prod.price <= maxPrice;
