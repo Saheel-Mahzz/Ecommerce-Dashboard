@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import Partners from "./components/partners";
+import { ServiceSlider } from "./components/serviceSlider";
 
 export default function Services() {
   return (
-    <>
-      <div className="grid grid-cols-2 max-w-7xl mx-auto ">
+    <div className="w-full max-w-7xl ml-auto space-y-28 ">
+      <div className="grid grid-cols-2 ">
         <div className="px-1 font-medium text-4xl leading-[49px] ">
           <p>
             Experience our expert solutions tailored to enhance your business
@@ -21,7 +22,8 @@ export default function Services() {
           <p>Blockchain</p>
         </div>
       </div>
+      <ServiceSlider />
       <Partners />
-    </>
+    </div>
   );
 }
