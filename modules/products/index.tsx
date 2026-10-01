@@ -13,7 +13,9 @@ export default async function Products({
     getProducts(),
     getCategories(),
   ]);
-  const allProducts = products.data || [];
+  const allProducts = products || [];
+
+  console.log("produdct", products);
   const allCategories = categories?.data || [];
   const count = products.totalProducts || 0;
   return (

@@ -10,7 +10,11 @@ export const productColumns: IColumn<Product>[] = [
     accessorKey: "",
     cell: (_, index) => <span>{(index || 0) + 1}</span>,
   },
-  { accessorKey: "title", header: "Name" },
+  {
+    accessorKey: "title",
+    header: "Name",
+    cell: (row) => <p>{row.title.substring(0, 20)}...</p>,
+  },
   { accessorKey: "price", header: "Price (Rs.)" },
   {
     accessorKey: "image",
@@ -27,7 +31,7 @@ export const productColumns: IColumn<Product>[] = [
     cell: (row) => <p>{row?.description?.substring(0, 20)}...</p>,
   },
   { accessorKey: "category", header: "Category" },
-  { accessorKey: "rating", header: "Rating" },
+  // { accessorKey: "rating.rate", header: "Rating" },
   {
     accessorKey: "",
     header: "Actions",
