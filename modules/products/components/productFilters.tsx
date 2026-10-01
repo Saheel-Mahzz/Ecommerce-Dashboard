@@ -2,10 +2,10 @@ import InputElement from "@/components/inputFields/inputElement";
 import { SelectElement } from "@/components/inputFields/selectElement";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Category } from "../types/product.types";
 
 interface ProductFiltersProps {
-  categories: Category[];
+  // categories: Category[];
+  categories: string[];
   setCategory: (value: string) => void;
   maxPrice: number;
   setMaxPrice: (val: number) => void;
@@ -22,10 +22,12 @@ export function ProductFilters({
   const categoryOptions =
     categories.map((cat) => {
       return {
-        value: cat.name.toLowerCase(),
-        label: cat.name,
+        value: cat.toLowerCase(),
+        label: cat.charAt(0).toUpperCase() + cat.slice(1),
       };
     }) || [];
+
+  console.log("category", categories);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-start gap-4">
       <SelectElement

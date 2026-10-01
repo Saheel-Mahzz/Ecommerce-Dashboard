@@ -54,7 +54,7 @@ export default function CartTable() {
           <Button
             className="text-gray-500 hover:text-black cursor-pointer"
             variant="outline"
-            onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) - 1)}
+            onClick={() => updateProduct?.(row?.id, (row?.quantity || 1) - 1)}
           >
             <Minus className="h-3 w-3" />
           </Button>
@@ -66,7 +66,7 @@ export default function CartTable() {
           <Button
             className="text-gray-500 hover:text-black cursor-pointer"
             variant="outline"
-            onClick={() => updateProduct?.(row?._id, (row?.quantity || 1) + 1)}
+            onClick={() => updateProduct?.(row?.id, (row?.quantity || 1) + 1)}
           >
             <Plus className="h-3 w-3" />
           </Button>

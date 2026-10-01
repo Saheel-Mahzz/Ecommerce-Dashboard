@@ -22,12 +22,12 @@ export const useCartStore = create<ShoppingCart>()(
 
       removeProduct: (product) =>
         set((state) => ({
-          products: state.products.filter((prod) => prod._id !== product._id),
+          products: state.products.filter((prod) => prod.id !== product.id),
         })),
       updateProduct: (productId, quantity) =>
         set((state) => ({
           products: state.products.map((prod) =>
-            prod._id === productId ? { ...prod, quantity: quantity } : prod,
+            prod.id === productId ? { ...prod, quantity: quantity } : prod,
           ),
         })),
 

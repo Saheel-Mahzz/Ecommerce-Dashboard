@@ -16,7 +16,7 @@ export default async function Products({
   const allProducts = products || [];
 
   console.log("produdct", products);
-  const allCategories = categories?.data || [];
+  const allCategories = categories || [];
   const count = products.totalProducts || 0;
   return (
     <div className="max-w-5xl mx-auto w-full my-7">

@@ -31,6 +31,8 @@ export function ProductsView({
     category: selectedCategory,
     searchQuery,
   });
+
+  console.log("filtered products", filteredProducts);
   return (
     <div className="flex flex-col gap-4">
       <ProductFilters

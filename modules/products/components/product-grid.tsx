@@ -5,17 +5,13 @@ import ProductCard from "./productCard";
 
 export function ProductGrid({ products }: { products: Product[] }) {
   const allProducts = useCartStore((state) => state.products);
-  const cartProductIds = new Set(allProducts.map((p) => p._id));
+  const cartProductIds = new Set(allProducts.map((p) => p.id));
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-4">
       {products.map((product) => {
-        const isInCart = cartProductIds.has(product._id);
+        const isInCart = cartProductIds.has(product.id);
         return (
-          <ProductCard
-            key={product._id}
-            product={product}
-            isInCart={isInCart}
-          />
+          <ProductCard key={product.id} product={product} isInCart={isInCart} />
         );
       })}
     </div>
