@@ -10,7 +10,7 @@ export default async function Products({
   };
 }) {
   const [products, categories] = await Promise.all([
-    getProducts(search.sort),
+    getProducts(search),
     getCategories(),
   ]);
 

@@ -36,7 +36,7 @@ export default function ProductCard({
         </p>
         <div className="mt-auto flex items-center justify-between pt-4">
           <span className="font-semibold text-lg">Rs. {product.price}</span>
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon">
             <Link href={`/products/${product.id}`}>
               <EyeIcon className="h-5 w-5" />
             </Link>
