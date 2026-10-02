@@ -1,0 +1,60 @@
+"use client";
+
+import { useActionState, useEffect } from "react";
+import InputElement from "../../components/inputFields/inputElement";
+import PasswordElement from "../../components/inputFields/passportElement";
+import { Button } from "../../components/ui/button";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import { loginAction } from "./action/loginAction";
+
+export default function LoginForm({
+  onAuthSuccess,
+}: {
+  onAuthSuccess: () => void;
+}) {
+  const [state, formAction, isPending] = useActionState(loginAction, {
+    success: false,
+    message: "",
+  });
+
+  //   const { login } = useAuth();
+
+  useEffect(() => {
+    if (state.success) {
+      toast.success("Login Successfull!");
+      //   login(state.data.access, state.data.refresh);
+      onAuthSuccess();
+    }
+  }, [state, onAuthSuccess]);
+  return (
+    <form className="space-y-4" action={formAction}>
+      <InputElement
+        label="Email"
+        name="email"
+        placeholder="test@yopmail.com"
+        type="email"
+        err={state?.error?.email}
+      />
+      <PasswordElement
+        label="Password"
+        name="password"
+        placeholder="*******"
+        err={state?.error?.password}
+      />
+      <Button
+        className="w-full mt-2 cursor-pointer"
+        type="submit"
+        disabled={isPending}
+      >
+        {isPending ? (
+          <>
+            <Loader2 className="animate-spin" size={16} /> Submitting...
+          </>
+        ) : (
+          "Login & Continue"
+        )}
+      </Button>
+    </form>
+  );
+}
