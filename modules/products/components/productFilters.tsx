@@ -4,20 +4,15 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 
 interface ProductFiltersProps {
-  // categories: Category[];
   categories: string[];
-  setCategory: (value: string) => void;
-  maxPrice: number;
-  setMaxPrice: (val: number) => void;
-  setSearchQuery: (val: string) => void;
+  maxPrice?: number;
+  handleFilters: (key: string, value: string) => void;
 }
 
 export function ProductFilters({
   categories,
-  setCategory,
   maxPrice,
-  setMaxPrice,
-  setSearchQuery,
+  handleFilters,
 }: ProductFiltersProps) {
   const categoryOptions =
     categories.map((cat) => {
@@ -34,7 +29,7 @@ export function ProductFilters({
         placeholder="Pick the category.."
         label="Category"
         options={categoryOptions}
-        onChange={(_, value) => setCategory(value)}
+        onChange={(_, value) => handleFilters("category", value)}
       />
       <Label className="flex flex-col text-gray-400">
         Price Range (Up to Rs. {maxPrice})
@@ -44,7 +39,7 @@ export function ProductFilters({
           step={1}
           onValueChange={(val) => {
             const numericValue = Array.isArray(val) ? val[0] : val;
-            setMaxPrice(numericValue);
+            handleFilters("maxPrice", numericValue);
           }}
         />
       </Label>
@@ -53,7 +48,7 @@ export function ProductFilters({
         label="Search"
         placeholder="Search by name.."
         type="text"
-        onChange={setSearchQuery}
+        onChange={(value) => handleFilters("name", value)}
       />
     </div>
   );

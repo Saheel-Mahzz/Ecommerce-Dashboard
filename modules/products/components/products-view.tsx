@@ -11,6 +11,7 @@ import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
 import filterProducts from "@/lib/filters/filterProducts";
 import { usePathname, useRouter } from "next/navigation";
+import useFilter from "@/hooks/useFilter";
 
 export function ProductsView({
   products,
@@ -26,15 +27,17 @@ export function ProductsView({
   const router = useRouter();
   const pathname = usePathname();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [maxPrice, setMaxPrice] = useState<number>(2000);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const filteredProducts = filterProducts(products, {
-    maxPrice,
-    category: selectedCategory,
-    searchQuery,
-  });
-
+  // const [selectedCategory, setSelectedCategory] = useState<string>("");
+  // const [maxPrice, setMaxPrice] = useState<number>(2000);
+  // const [searchQuery, setSearchQuery] = useState<string>("");
+  // const filteredProducts = filterProducts(products, {
+  //   maxPrice,
+  //   category: selectedCategory,
+  //   searchQuery,
+  // });
+  console.log("filtered products", products);
+  const { filteredProducts, handleFilter } = useFilter(products);
+  console.log("from hook", filteredProducts);
   const handleSorting = (value: string) => {
     const params = new URLSearchParams();
     if (value.trim()) {
@@ -47,10 +50,8 @@ export function ProductsView({
     <div className="flex flex-col gap-4">
       <ProductFilters
         categories={categories}
-        setCategory={setSelectedCategory}
-        maxPrice={maxPrice}
-        setMaxPrice={setMaxPrice}
-        setSearchQuery={setSearchQuery}
+        // maxPrice={maxPrice}
+        handleFilters={handleFilter}
       />
 
       <div className="flex justify-end items-center gap-2">
