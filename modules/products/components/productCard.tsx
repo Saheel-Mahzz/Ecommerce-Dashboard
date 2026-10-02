@@ -16,7 +16,7 @@ export default function ProductCard({
 }) {
   const { addProduct } = useCartStore();
   return (
-    <Card key={product._id} className="flex flex-col">
+    <Card key={product.id} className="flex flex-col">
       <CardHeader>
         <div className="h-48 w-full  flex items-center justify-center overflow-hidden rounded-md mb-4 bg-gray-100">
           {product.image ? (
@@ -31,9 +31,7 @@ export default function ProductCard({
             <span className="text-muted-foreground text-sm">No Image</span>
           )}
         </div>
-        <CardTitle className="text-lg line-clamp-1">
-          {(product as any).title || product.name}
-        </CardTitle>
+        <CardTitle className="text-lg line-clamp-1">{product?.title}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col gap-2">
         <p className="text-sm text-muted-foreground line-clamp-2 min-h-[40px]">
@@ -42,7 +40,7 @@ export default function ProductCard({
         <div className="mt-auto flex items-center justify-between pt-4">
           <span className="font-semibold text-lg">Rs. {product.price}</span>
           <Button variant="ghost" size="icon" asChild>
-            <Link href={`/products/${product._id}`}>
+            <Link href={`/products/${product.id}`}>
               <EyeIcon className="h-5 w-5" />
             </Link>
           </Button>
