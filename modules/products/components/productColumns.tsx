@@ -3,13 +3,9 @@ import Image from "next/image";
 import { Product } from "../types/product.types";
 import Link from "next/link";
 import { EyeIcon } from "lucide-react";
+import AddToCartButton from "./addToCartButton";
 
 export const productColumns: IColumn<Product>[] = [
-  // {
-  //   header: "S.N.",
-  //   accessorKey: "",
-  //   cell: (_, index) => <span>{(index || 0) + 1}</span>,
-  // },
   {
     header: "S.N.",
     accessorKey: "id",
@@ -35,14 +31,19 @@ export const productColumns: IColumn<Product>[] = [
     cell: (row) => <p>{row?.description?.substring(0, 20)}...</p>,
   },
   { accessorKey: "category", header: "Category" },
-  // { accessorKey: "rating.rate", header: "Rating" },
+  { accessorKey: "rating.rate", header: "Rating" },
   {
     accessorKey: "",
     header: "Actions",
     cell: (row) => (
-      <Link href={`/products/${row?._id}`}>
+      <Link href={`/products/${row?.id}`}>
         <EyeIcon />
       </Link>
     ),
+  },
+  {
+    accessorKey: "",
+    header: "",
+    cell: (row) => <AddToCartButton product={row} />,
   },
 ];

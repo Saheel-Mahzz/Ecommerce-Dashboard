@@ -1,20 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Product } from "../types/product.types";
-import { toast } from "sonner";
-import { useCartStore } from "@/stores/useCartStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { EyeIcon } from "lucide-react";
+import AddToCartButton from "./addToCartButton";
 
 export default function ProductCard({
   product,
-  isInCart,
 }: {
   product: Product;
   isInCart: boolean;
 }) {
-  const { addProduct } = useCartStore();
   return (
     <Card key={product.id} className="flex flex-col">
       <CardHeader>
@@ -45,15 +42,7 @@ export default function ProductCard({
             </Link>
           </Button>
         </div>
-        <Button
-          disabled={isInCart}
-          onClick={() => {
-            addProduct(product);
-            toast.success(`${product.title} added to cart!`);
-          }}
-        >
-          {isInCart ? "Added to Cart" : "Add to Cart"}
-        </Button>
+        <AddToCartButton product={product} />
       </CardContent>
     </Card>
   );
