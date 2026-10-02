@@ -5,7 +5,7 @@ interface ProductPricingProps {
 }
 
 export function ProductPricing({ price }: ProductPricingProps) {
-  const originalPrice = (price * 1.25).toFixed(2); // Example original price
+  const originalPrice = (price * 1.25).toFixed(2);
   const savingsPercent = 20;
 
   return (
