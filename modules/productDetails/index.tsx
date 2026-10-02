@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ShieldCheck, Sun, Zap } from "lucide-react";
-import { ProductGallery } from "./ProductGallery";
-import { ProductHeaderInfo } from "./ProductHeaderInfo";
-import { ProductPricing } from "./ProductPricing";
-import { QuantitySelector } from "./QuantitySelector";
+import { ProductGallery } from "./components/productGallery";
+import { ProductHeaderInfo } from "./components/productHeader";
+import { ProductPricing } from "./components/productPricing";
 
 const dummyProduct = {
   id: 3,
@@ -89,7 +88,7 @@ export default function ProductDetailsView() {
           </div>
 
           <div className="space-y-4 pt-2">
-            <QuantitySelector quantity={quantity} onChange={setQuantity} />
+            {/* <QuantitySelector quantity={quantity} onChange={setQuantity} /> */}
 
             <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-6 rounded-md shadow-sm text-sm">
               Add to Cart
