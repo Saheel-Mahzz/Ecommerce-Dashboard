@@ -2,56 +2,39 @@ import React from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "../ui/dialog";
-import { Button } from "../ui/button";
-import { Plus } from "lucide-react";
 
-type ButtonVariant =
-  | "default"
-  | "link"
-  | "outline"
-  | "secondary"
-  | "ghost"
-  | "destructive"
-  | null
-  | undefined;
+interface IModelProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+}
 
 export default function Model({
-  open,
-  setOpen,
+  description,
+  isOpen,
+  onOpenChange,
   title,
-  triggerComponent,
-  buttonText,
-  buttonProps,
-  variant,
-  withIcon = true,
-}: {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  title: string;
-  triggerComponent: React.ReactNode;
-  buttonText: string | React.ReactNode;
-  buttonProps?: string;
-  withIcon?: boolean;
-  variant?: ButtonVariant;
-}) {
+  children,
+}: IModelProps) {
   return (
     <>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger>
-          <Button variant={variant} className={`${buttonProps} cursor-pointer`}>
-            {withIcon && <Plus className="mr-2 h-4 w-4" />}
-            {buttonText}
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[500px]">
+      <Dialog open={isOpen} onOpenChange={onOpenChange}>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
+            <DialogTitle className="text-xl font-bold text-center">
+              {title}
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              {description}
+            </DialogDescription>
           </DialogHeader>
-          {triggerComponent}
+          {children}
         </DialogContent>
       </Dialog>
     </>

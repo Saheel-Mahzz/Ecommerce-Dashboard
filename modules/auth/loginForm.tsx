@@ -2,17 +2,13 @@
 
 import { useActionState, useEffect } from "react";
 import InputElement from "../../components/inputFields/inputElement";
-import PasswordElement from "../../components/inputFields/passportElement";
 import { Button } from "../../components/ui/button";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { loginAction } from "./action/loginAction";
+import PasswordElement from "@/components/inputFields/passwordElement";
 
-export default function LoginForm({
-  onAuthSuccess,
-}: {
-  onAuthSuccess: () => void;
-}) {
+export default function LoginForm() {
   const [state, formAction, isPending] = useActionState(loginAction, {
     success: false,
     message: "",
@@ -24,9 +20,8 @@ export default function LoginForm({
     if (state.success) {
       toast.success("Login Successfull!");
       //   login(state.data.access, state.data.refresh);
-      onAuthSuccess();
     }
-  }, [state, onAuthSuccess]);
+  }, [state]);
   return (
     <form className="space-y-4" action={formAction}>
       <InputElement
