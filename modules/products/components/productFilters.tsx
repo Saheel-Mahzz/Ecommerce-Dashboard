@@ -48,7 +48,7 @@ export function ProductFilters({
         label="Search"
         placeholder="Search by name.."
         type="text"
-        onChange={(value) => handleFilters("name", value)}
+        onChange={(value) => handleFilters("searchQuery", value)}
       />
     </div>
   );

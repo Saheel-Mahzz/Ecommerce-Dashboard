@@ -9,7 +9,6 @@ import { PaginationCount } from "@/components/pagination";
 import { getPageOffset } from "@/components/list/utils/getPageOffset";
 import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
-import filterProducts from "@/lib/filters/filterProducts";
 import { usePathname, useRouter } from "next/navigation";
 import useFilter from "@/hooks/useFilter";
 
@@ -27,17 +26,7 @@ export function ProductsView({
   const router = useRouter();
   const pathname = usePathname();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
-  // const [selectedCategory, setSelectedCategory] = useState<string>("");
-  // const [maxPrice, setMaxPrice] = useState<number>(2000);
-  // const [searchQuery, setSearchQuery] = useState<string>("");
-  // const filteredProducts = filterProducts(products, {
-  //   maxPrice,
-  //   category: selectedCategory,
-  //   searchQuery,
-  // });
-  console.log("filtered products", products);
-  const { filteredProducts, handleFilter } = useFilter(products);
-  console.log("from hook", filteredProducts);
+  const { filteredProducts, filters, handleFilter } = useFilter(products);
   const handleSorting = (value: string) => {
     const params = new URLSearchParams();
     if (value.trim()) {
@@ -50,10 +39,9 @@ export function ProductsView({
     <div className="flex flex-col gap-4">
       <ProductFilters
         categories={categories}
-        // maxPrice={maxPrice}
+        maxPrice={filters?.maxPrice}
         handleFilters={handleFilter}
       />
-
       <div className="flex justify-end items-center gap-2">
         <Button
           variant={viewMode === "list" ? "default" : "outline"}
@@ -85,7 +73,6 @@ export function ProductsView({
       ) : (
         <ProductGrid products={filteredProducts} />
       )}
-
       <PaginationCount totalCount={count} />
     </div>
   );

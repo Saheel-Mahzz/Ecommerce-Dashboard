@@ -34,5 +34,5 @@ export default function useFilter(products: Product[]) {
 
     return matchesCategory && matchesPrice && matchesName;
   });
-  return { filteredProducts, handleFilter };
+  return { filteredProducts, filters, handleFilter };
 }
