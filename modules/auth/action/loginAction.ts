@@ -7,7 +7,7 @@ interface LoginState {
 }
 export async function loginAction(prevState: LoginState, formData: FormData) {
   const rawData = {
-    email: formData.get("email") as string,
+    username: formData.get("username") as string,
     password: formData.get("password") as string,
   };
   const safeData = LoginSchema.safeParse(rawData);
@@ -41,7 +41,7 @@ export async function loginAction(prevState: LoginState, formData: FormData) {
         body: JSON.stringify(rawData),
       },
     );
-
+    console.log("response", response.json);
     const data = await response.json();
 
     // Axios le 400/500 errors automatic catch ma falchha, tara fetch ma res.ok false hunchha

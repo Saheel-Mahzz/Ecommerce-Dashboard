@@ -7,29 +7,36 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { loginAction } from "./action/loginAction";
 import PasswordElement from "@/components/inputFields/passwordElement";
+import { useAuthStore } from "@/stores/useAuthStore";
 
-export default function LoginForm() {
+export default function LoginForm({
+  onAuthSuccess,
+}: {
+  onAuthSuccess?: () => void;
+}) {
   const [state, formAction, isPending] = useActionState(loginAction, {
     success: false,
     message: "",
   });
-
-  //   const { login } = useAuth();
+  const { login } = useAuthStore();
 
   useEffect(() => {
     if (state.success) {
       toast.success("Login Successfull!");
-      //   login(state.data.access, state.data.refresh);
+      login(state.data.token);
+      onAuthSuccess?.();
     }
   }, [state]);
+
+  console.log("state", state);
   return (
     <form className="space-y-4" action={formAction}>
       <InputElement
-        label="Email"
-        name="email"
+        label="Username"
+        name="username"
         placeholder="test@yopmail.com"
-        type="email"
-        err={state?.error?.email}
+        type="text"
+        err={state?.error?.username}
       />
       <PasswordElement
         label="Password"
