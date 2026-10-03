@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Product } from "../types/product.types";
 import { List } from "@/components/list";
-import { ProductGrid } from "./product-grid";
 import { Button } from "@/components/ui/button";
 import { LayoutGrid, List as ListIcon } from "lucide-react";
 import { PaginationCount } from "@/components/pagination";
@@ -13,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import useFilter from "@/hooks/useFilter";
 import { SelectElement } from "@/components/inputFields/selectElement";
 import { SORT_OPTIONS } from "../constants/product.constant";
+import { ProductGrid } from "./productGrid";
 
 export function ProductsView({
   products,
