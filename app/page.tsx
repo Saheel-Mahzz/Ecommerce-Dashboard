@@ -1,10 +1,10 @@
-import Testing from "@/modules/testing";
+import Products from "@/modules/products";
 
-export default async function Home({
+export default async function page({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const search = await searchParams;
-  return <Testing search={search} />;
+  return <Products search={search} />;
 }
