@@ -5,45 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const CARDS_DATA = [
-  {
-    id: "all-courses",
-    title: "All Courses",
-    subtitle: "courses you're powering through right now.",
-    count: "23",
-    icons: [
-      "/images/react.svg",
-      "/images/like.svg",
-      "/images/vue.svg",
-      "/images/pencil.svg",
-    ],
-  },
-  {
-    id: "upcoming-courses",
-    title: "Upcoming Courses",
-    subtitle: "exciting new courses waiting to boost your skills.",
-    count: "05",
-    icons: [
-      "/images/react.svg",
-      "/images/like.svg",
-      "/images/vue.svg",
-      "/images/pencil.svg",
-    ],
-  },
-  {
-    id: "ongoing-courses",
-    title: "Ongoing Courses",
-    subtitle: "currently happening—don't miss out on the action!",
-    count: "10",
-    icons: [
-      "/images/react.svg",
-      "/images/like.svg",
-      "/images/vue.svg",
-      "/images/pencil.svg",
-    ],
-  },
-];
+import { CARDS_DATA } from "../constants/course.constants";
 
 export default function CourseCards() {
   const [activeId, setActiveId] = useState("all-courses");
