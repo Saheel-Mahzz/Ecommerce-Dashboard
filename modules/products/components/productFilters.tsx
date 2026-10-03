@@ -14,19 +14,13 @@ export function ProductFilters({
   maxPrice,
   handleFilters,
 }: ProductFiltersProps) {
-  // const categoryOptions =
-  //   categories.map((cat) => {
-  //     return {
-  //       value: cat.toLowerCase(),
-  //       label: cat.charAt(0).toUpperCase() + cat.slice(1),
-  //     };
-  //   }) || [];
-  const categoryOptions = [
-    {
-      label: "women",
-      value: "Women",
-    },
-  ];
+  const categoryOptions =
+    categories.map((cat) => {
+      return {
+        value: cat.toLowerCase(),
+        label: cat.charAt(0).toUpperCase() + cat.slice(1),
+      };
+    }) || [];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-start gap-4">
@@ -35,7 +29,7 @@ export function ProductFilters({
         placeholder="Pick the category.."
         label="Category"
         options={categoryOptions}
-        onChange={(_, value) => handleFilters("category", value)}
+        onChange={(_, value) => handleFilters("category", value ?? "")}
       />
       <Label className="flex flex-col text-gray-400">
         Price Range (Up to Rs. {maxPrice})
