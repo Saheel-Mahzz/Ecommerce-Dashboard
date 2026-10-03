@@ -8,6 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { ITEMS_PER_PAGE } from "@/modules/products/constants/product.constant";
 import { usePathname, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
@@ -17,8 +18,6 @@ interface PaginationProps {
 export function PaginationCount({ totalCount }: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const ITEMS_PER_PAGE = 5;
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
   const currentPageNumber = Number(searchParams.get("page")) || 1;
 

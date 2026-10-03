@@ -40,7 +40,7 @@ export function ProductFilters({
       <Label className="flex flex-col text-gray-400">
         Price Range (Up to Rs. {maxPrice})
         <Slider
-          defaultValue={[200]}
+          defaultValue={[2000]}
           max={2000}
           step={1}
           onValueChange={(val) => {

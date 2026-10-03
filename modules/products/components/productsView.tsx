@@ -8,34 +8,46 @@ import { PaginationCount } from "@/components/pagination";
 import { getPageOffset } from "@/components/list/utils/getPageOffset";
 import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useFilter from "@/hooks/useFilter";
 import { SelectElement } from "@/components/inputFields/selectElement";
-import { SORT_OPTIONS } from "../constants/product.constant";
+import { ITEMS_PER_PAGE, SORT_OPTIONS } from "../constants/product.constant";
 import { ProductGrid } from "./productGrid";
 
 export function ProductsView({
   products,
   categories,
-  count,
   search,
 }: {
   products: Product[];
   categories: string[];
-  count: number;
+  count?: number;
   search: { [key: string]: string | undefined };
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const { filteredProducts, filters, handleFilter } = useFilter(products);
+
   const handleSorting = (value: string) => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     if (value.trim()) {
       params.set("sort", value);
+    } else {
+      params.delete("sort");
     }
     router.push(`${pathname}?${params.toString()}`);
   };
+
+  const currentPage = Number(searchParams.get("page")) || 1;
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
   return (
     <div className="flex flex-col gap-4">
@@ -68,21 +80,21 @@ export function ProductsView({
             label="Sort By"
             placeholder="Select order"
             options={SORT_OPTIONS}
-            onChange={(name, value) => handleSorting(value)}
+            onChange={(name, value) => handleSorting(value ?? "")}
           />
         </div>
       </div>
 
       {viewMode === "list" ? (
         <List
-          rows={filteredProducts}
+          rows={paginatedProducts}
           columns={productColumns}
           startIndex={getPageOffset(search)}
         />
       ) : (
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid products={paginatedProducts} />
       )}
-      <PaginationCount totalCount={count} />
+      <PaginationCount totalCount={filteredProducts.length} />
     </div>
   );
 }

@@ -9,10 +9,9 @@ interface IFilterParams {
 export default function useFilter(products: Product[]) {
   const [filters, setFilters] = useState<IFilterParams>({
     category: "",
-    maxPrice: 0,
+    maxPrice: 2000,
     searchQuery: "",
   });
-
   const handleFilter = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
@@ -20,11 +19,10 @@ export default function useFilter(products: Product[]) {
     const matchesCategory = filters.category
       ? prod?.category.toLowerCase() === filters?.category.toLowerCase()
       : true;
-
-    // const matchesPrice = prod.price <= filters?.maxPrice;
-    const matchesPrice = filters?.maxPrice
-      ? prod.price <= filters.maxPrice
-      : true;
+    const matchesPrice =
+      filters.maxPrice && filters.maxPrice > 0
+        ? prod.price <= filters.maxPrice
+        : true;
 
     const matchesName = filters?.searchQuery
       ? prod.title

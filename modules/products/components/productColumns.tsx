@@ -7,7 +7,7 @@ import AddToCartButton from "./addToCartButton";
 
 export const productColumns: IColumn<Product>[] = [
   {
-    header: "S.N.",
+    header: "ID",
     accessorKey: "id",
   },
   {

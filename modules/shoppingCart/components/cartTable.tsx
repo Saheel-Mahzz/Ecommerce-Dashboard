@@ -12,6 +12,7 @@ import { toast } from "sonner";
 
 export default function CartTable() {
   const { removeProduct, updateProduct, products } = useCartStore();
+  const totalAmount = useCartStore((state) => state.total?.());
   const cartColumns: IColumn<Product>[] = [
     {
       header: "",
@@ -88,11 +89,21 @@ export default function CartTable() {
     <div className="max-w-7xl mx-auto w-full">
       <h2 className="text-3xl font-bold text-center">Shopping Cart</h2>
       <List columns={cartColumns} rows={products} />
-      <Link href="/products/">
-        <Button variant="outline" className="w-1/3 cursor-pointer">
-          Update Cart
+      <div className="flex items-center justify-between border-t pt-4 mt-6">
+        <Link href="/products">
+          <Button className="cursor-pointer " size="lg">
+            Update Cart
+          </Button>
+        </Link>
+        <Button variant="outline" size="lg" className="cursor-pointer ">
+          <span className="text-muted-foreground text-sm font-normal">
+            Total:
+          </span>
+          <span className="text-base font-bold text-primary">
+            Rs. {totalAmount}
+          </span>
         </Button>
-      </Link>
+      </div>
     </div>
   );
 }
