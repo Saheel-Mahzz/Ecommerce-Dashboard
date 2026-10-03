@@ -68,7 +68,6 @@ export default function CourseCards() {
             >
               <AnimatePresence mode="popLayout">
                 {isBig ? (
-                  /* ================= BIG RED BOX CONTENT ================= */
                   <motion.div
                     key="big-content"
                     initial={{ opacity: 0 }}
@@ -76,7 +75,6 @@ export default function CourseCards() {
                     exit={{ opacity: 0 }}
                     className="flex flex-col space-y-8 md:space-y-12 w-full"
                   >
-                    {/* Top Action Button */}
                     <div className="flex items-center justify-end">
                       <Button
                         className="bg-transparent outline-0 border-0 text-sm cursor-pointer hover:bg-transparent text-white p-0 flex items-center gap-2"
@@ -87,21 +85,19 @@ export default function CourseCards() {
                       </Button>
                     </div>
 
-                    {/* Tech / Category Icons */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center">
                       {card.icons.map((icon, idx) => (
                         <Image
                           key={idx}
                           src={icon}
                           alt="tech-icon"
-                          width={80}
-                          height={80}
+                          width={100}
+                          height={100}
                           className="object-contain w-16 h-16 md:w-20 md:h-20"
                         />
                       ))}
                     </div>
 
-                    {/* Bottom Number + Title */}
                     <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6 items-start sm:items-center pt-2 md:pt-4">
                       <h3 className="font-bold text-7xl sm:text-8xl md:text-[120px] leading-none flex items-start">
                         {card.count}
@@ -120,7 +116,6 @@ export default function CourseCards() {
                     </div>
                   </motion.div>
                 ) : (
-                  /* ================= SMALL INACTIVE BOX CONTENT ================= */
                   <motion.div
                     key="small-content"
                     initial={{ opacity: 0 }}
@@ -128,7 +123,6 @@ export default function CourseCards() {
                     exit={{ opacity: 0 }}
                     className="flex flex-row md:flex-col justify-between  md:justify-start gap-4 md:gap-7 items-center md:items-start w-full"
                   >
-                    {/* Vertical Title for Desktop / Horizontal for Mobile */}
                     <div className="flex flex-col justify-center md:[writing-mode:vertical-rl] md:rotate-180 md:max-h-[220px] gap-1 md:gap-2">
                       <h3 className="font-bold text-xl md:text-3xl  leading-tight md:leading-none">
                         {card.title}
@@ -138,7 +132,6 @@ export default function CourseCards() {
                       </p>
                     </div>
 
-                    {/* Small Number & Plus Icon */}
                     <div className="flex items-start md:mt-auto">
                       <span className="text-5xl sm:text-7xl md:text-[120px] font-bold leading-none tracking-tight">
                         {card.count}
