@@ -14,12 +14,16 @@ export default async function Products({
     getCategories(),
   ]);
 
+  console.log("products", products);
+
+  const allProducts = products.products;
+
   const count = 20;
   return (
     <div className="max-w-5xl mx-auto w-full my-7">
       <h2 className="text-3xl font-semibold text-center mb-6">Products</h2>
       <ProductsView
-        products={products}
+        products={allProducts}
         categories={categories}
         count={count}
         search={search}

@@ -14,13 +14,19 @@ export function ProductFilters({
   maxPrice,
   handleFilters,
 }: ProductFiltersProps) {
-  const categoryOptions =
-    categories.map((cat) => {
-      return {
-        value: cat.toLowerCase(),
-        label: cat.charAt(0).toUpperCase() + cat.slice(1),
-      };
-    }) || [];
+  // const categoryOptions =
+  //   categories.map((cat) => {
+  //     return {
+  //       value: cat.toLowerCase(),
+  //       label: cat.charAt(0).toUpperCase() + cat.slice(1),
+  //     };
+  //   }) || [];
+  const categoryOptions = [
+    {
+      label: "women",
+      value: "Women",
+    },
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-start gap-4">

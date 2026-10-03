@@ -11,8 +11,6 @@ import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
 import { usePathname, useRouter } from "next/navigation";
 import useFilter from "@/hooks/useFilter";
-import Model from "@/components/Model";
-import LoginForm from "@/modules/auth/loginForm";
 
 export function ProductsView({
   products,
@@ -29,7 +27,6 @@ export function ProductsView({
   const pathname = usePathname();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const { filteredProducts, filters, handleFilter } = useFilter(products);
-  const [openAuth, setOpenAuth] = useState<boolean>(false);
   const handleSorting = (value: string) => {
     const params = new URLSearchParams();
     if (value.trim()) {
@@ -45,15 +42,7 @@ export function ProductsView({
         maxPrice={filters?.maxPrice}
         handleFilters={handleFilter}
       />
-      <Button onClick={() => setOpenAuth(true)}>Open</Button>
-      <Model
-        description="dsad"
-        isOpen={openAuth}
-        onOpenChange={setOpenAuth}
-        title="login"
-      >
-        <LoginForm />
-      </Model>
+
       <div className="flex justify-end items-center gap-2">
         <Button
           variant={viewMode === "list" ? "default" : "outline"}

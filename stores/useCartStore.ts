@@ -9,6 +9,7 @@ interface ShoppingCart {
   updateProduct?: (productId: string, quantity: number) => void;
   getAllProducts?: () => void;
   total?: () => number;
+  getProductCount: () => number;
 }
 
 export const useCartStore = create<ShoppingCart>()(
@@ -31,7 +32,12 @@ export const useCartStore = create<ShoppingCart>()(
           ),
         })),
 
-      getAllProducts: () => get().products,
+      getProductCount: () => {
+        return get().products.reduce(
+          (acc, item) => acc + Number(item.quantity || 1),
+          0,
+        );
+      },
 
       total: () =>
         get().products.reduce(
