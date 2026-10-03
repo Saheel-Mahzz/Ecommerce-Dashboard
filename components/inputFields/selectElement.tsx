@@ -26,7 +26,7 @@ export function SelectElement({
   name: string;
   err?: string;
   defaultValue?: string;
-  onChange?: (key: string, value: string) => void;
+  onChange?: (key: string, value: string | null) => void;
 }) {
   return (
     <Field className="w-full ">

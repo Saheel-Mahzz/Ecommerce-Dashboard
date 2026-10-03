@@ -28,39 +28,30 @@ export default function Error({
   };
 
   return (
-    <div className="w-full min-h-[380px] flex items-center justify-center p-4">
-      <Card className="max-w-xl w-full border border-dashed border-red-200 bg-red-50/30 dark:bg-red-950/10 shadow-none rounded-2xl transition-all">
-        <CardContent className="flex flex-col items-center text-center p-8 sm:p-10 space-y-5">
+    <div className="flex min-h-[380px] items-center justify-center p-4">
+      <Card className="w-full max-w-xl border-dashed border-red-200 bg-red-50/30 text-center shadow-none">
+        <CardContent className="flex flex-col items-center p-8 space-y-4">
           <div className="relative flex items-center justify-center">
-            <div className="absolute w-16 h-16 bg-red-100 rounded-full animate-pulse opacity-60" />
-            <div className="relative h-14 w-14 rounded-2xl bg-white dark:bg-gray-900 border border-red-100 shadow-sm flex items-center justify-center">
-              <AlertCircle className="h-7 w-7 text-red-500" />
+            <div className="absolute h-14 w-14 rounded-full bg-red-100 animate-pulse" />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white border border-red-100 shadow-sm">
+              <AlertCircle className="h-6 w-6 text-red-500" />
             </div>
           </div>
 
-          <div className="space-y-1.5 max-w-md">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
-              Something went wrong
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+          <div className="space-y-1">
+            <h3 className="text-lg font-semibold">Something went wrong</h3>
+            <p className="text-sm text-muted-foreground">
               {error?.message ||
-                "Check your internet connection and try again. If the problem persists, please contact support."}
+                "Check your internet connection and try again."}
             </p>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row gap-3 w-full sm:w-auto min-w-[200px]">
-            <Button
-              onClick={handleRetry}
-              disabled={isPending}
-              size="lg"
-              className="w-full sm:w-auto h-11 px-6 rounded-xl bg-black hover:bg-gray-800 text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
-            >
-              <RefreshCw
-                className={`mr-2 h-4 w-4 ${isPending ? "animate-spin text-gray-300" : ""}`}
-              />
-              {isPending ? "Retrying..." : "Try Again"}
-            </Button>
-          </div>
+          <Button onClick={handleRetry} disabled={isPending} className="mt-2">
+            <RefreshCw
+              className={`mr-2 h-4 w-4 ${isPending ? "animate-spin" : ""}`}
+            />
+            {isPending ? "Retrying..." : "Try Again"}
+          </Button>
         </CardContent>
       </Card>
     </div>
