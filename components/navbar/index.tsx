@@ -1,8 +1,8 @@
 "use client";
 
-import { NavLogo } from "./NavLogo";
-import { NavLinks } from "./NavLinks";
-import { NavUserActions } from "./NavUserActions";
+import { NavUserActions } from "./navActions";
+import { NavLinks } from "./navLinks";
+import { NavLogo } from "./navLogo";
 
 export function Navbar() {
   return (

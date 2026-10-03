@@ -22,6 +22,8 @@ export default async function getProducts(
 
   const res = await fetch(url);
   if (!res.ok) {
+    console.log("res", res);
+    throw new Error(`HTTP error! status: ${res.status}`);
   }
   return res.json();
 }
