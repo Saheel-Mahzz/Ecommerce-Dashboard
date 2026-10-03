@@ -11,6 +11,8 @@ import { ProductFilters } from "./productFilters";
 import { productColumns } from "./productColumns";
 import { usePathname, useRouter } from "next/navigation";
 import useFilter from "@/hooks/useFilter";
+import { SelectElement } from "@/components/inputFields/selectElement";
+import { SORT_OPTIONS } from "../constants/product.constant";
 
 export function ProductsView({
   products,
@@ -60,9 +62,15 @@ export function ProductsView({
         >
           <LayoutGrid className="h-4 w-4" />
         </Button>
-        <Button variant="outline" onClick={() => handleSorting("desc")}>
-          sort
-        </Button>
+        <div className="w-[180px]">
+          <SelectElement
+            name="sort"
+            label="Sort By"
+            placeholder="Select order"
+            options={SORT_OPTIONS}
+            onChange={(name, value) => handleSorting(value)}
+          />
+        </div>
       </div>
 
       {viewMode === "list" ? (

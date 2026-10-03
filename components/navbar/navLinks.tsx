@@ -9,17 +9,23 @@ const links = [
   { name: "Products", href: "/products" },
 ];
 
-export function NavLinks() {
+interface NavLinksProps {
+  onItemClick?: () => void;
+  className?: string;
+}
+
+export function NavLinks({ onItemClick, className }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center gap-6">
+    <nav className={className || "flex items-center gap-6"}>
       {links.map((link) => {
         const isActive = pathname === link.href;
         return (
           <Link
             key={link.href}
             href={link.href}
+            onClick={onItemClick}
             className={`text-sm font-medium transition-colors ${
               isActive
                 ? "text-primary font-semibold"
