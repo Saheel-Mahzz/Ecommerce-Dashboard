@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import { SERVICE_IMAGES } from "../constants/services.constant";
 
 export function ServiceSlider() {
   return (
@@ -17,44 +18,17 @@ export function ServiceSlider() {
       }}
     >
       <CarouselContent className="-ml-4">
-        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
-          <Image
-            src="/images/service-1.png"
-            width={1000}
-            height={500}
-            alt="service"
-            className="w-full h-auto object-cover rounded-2xl"
-          />
-        </CarouselItem>
-
-        {/* 2nd Card: Remaining space ma aafnai AADHA (HALF) matrai peeking part dekhincha */}
-        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
-          <Image
-            src="/images/service-1.png"
-            width={1000}
-            height={500}
-            alt="service"
-            className="w-full h-auto object-cover rounded-2xl"
-          />
-        </CarouselItem>
-        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
-          <Image
-            src="/images/service-1.png"
-            width={1000}
-            height={500}
-            alt="service"
-            className="w-full h-auto object-cover rounded-2xl"
-          />
-        </CarouselItem>
-        <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]">
-          <Image
-            src="/images/service-1.png"
-            width={1000}
-            height={500}
-            alt="service"
-            className="w-full h-auto object-cover rounded-2xl"
-          />
-        </CarouselItem>
+        {SERVICE_IMAGES?.map((image, index) => (
+          <CarouselItem className="pl-4 basis-[75%] md:basis-[80%]" key={index}>
+            <Image
+              src={image.src}
+              width={1000}
+              height={500}
+              alt="service"
+              className="w-full h-auto object-cover rounded-2xl"
+            />
+          </CarouselItem>
+        ))}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
