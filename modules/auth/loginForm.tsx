@@ -57,6 +57,14 @@ export default function LoginForm({
           "Login & Continue"
         )}
       </Button>
+      <div className="mt-3 p-2 bg-muted/50 rounded-md text-xs text-muted-foreground text-center">
+        <p>
+          <strong>Demo Username:</strong> johnd
+        </p>
+        <p>
+          <strong>Demo Password:</strong> m38rmF$
+        </p>
+      </div>
     </form>
   );
 }
