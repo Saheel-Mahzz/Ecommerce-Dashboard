@@ -13,6 +13,10 @@ export interface Product {
   };
 }
 
+export interface TestProduct {
+  products: Product[];
+}
+
 export interface Category {
   description: string;
   name: string;

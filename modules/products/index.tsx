@@ -12,11 +12,16 @@ export default async function Products({
     getCategories(),
   ]);
 
+  console.log("products", products.products);
+  console.log("category", categories);
+
+  const allProducts = products.products;
+
   return (
     <div className="max-w-5xl mx-auto w-full my-7">
       <h2 className="text-3xl font-semibold text-center mb-6">Products</h2>
       <ProductsView
-        products={products}
+        products={allProducts}
         categories={categories}
         search={search}
       />
