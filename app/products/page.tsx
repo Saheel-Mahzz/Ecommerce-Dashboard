@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Products from "@/modules/products";
 
 export default async function page({
@@ -6,5 +7,14 @@ export default async function page({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const search = await searchParams;
-  return <Products search={search} />;
+
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full h-96 bg-gray-100 animate-pulse rounded-2xl" />
+      }
+    >
+      <Products search={search} />
+    </Suspense>
+  );
 }
