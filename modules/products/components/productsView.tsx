@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // 1. useEffect import garne
 import { Product } from "../types/product.types";
 import { List } from "@/components/list";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,14 @@ export function ProductsView({
   count?: number;
   search: { [key: string]: string | undefined };
 }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMounted(true);
+    }, 0);
+  }, []);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -41,13 +49,18 @@ export function ProductsView({
   };
 
   const currentPage = Number(searchParams.get("page")) || 1;
-
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-
   const paginatedProducts = filteredProducts.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE,
   );
+
+  // 4. Hydration crash bata bachna Client ready na-bhaye samma SSR ma fallback loader dekhaune
+  if (!mounted) {
+    return (
+      <div className="w-full h-64 bg-gray-100 animate-pulse rounded-2xl" />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-4">
