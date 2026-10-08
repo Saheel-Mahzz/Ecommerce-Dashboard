@@ -1,54 +1,31 @@
 "use client";
-
 import Link from "next/link";
 import { ShoppingBag, User } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore";
 import { Badge } from "../ui/badge";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Model from "../Model";
 import LoginForm from "@/modules/auth/loginForm";
 import { Button } from "../ui/button";
 
 export function NavUserActions() {
-  const [mounted, setMounted] = useState<boolean>(false);
   const { isLoggedIn } = useAuthStore();
   const { products } = useCartStore();
   const [openAuth, setOpenAuth] = useState<boolean>(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMounted(true);
-    }, 0);
-  }, []);
-
   const productCount = products.reduce(
     (acc, item) => acc + Number(item.quantity || 1),
     0,
   );
-
   const handleAuthentication = () => {
     if (!isLoggedIn) {
       setOpenAuth(true);
       return;
     }
   };
-
   const onAuthSuccess = () => {
     setOpenAuth(false);
   };
-
-  if (!mounted) {
-    return (
-      <div className="flex items-center gap-4">
-        <div className="p-2 text-muted-foreground">
-          <ShoppingBag className="w-6 h-6" />
-        </div>
-        <Button className="cursor-pointer">Login</Button>
-      </div>
-    );
-  }
-
   return (
     <div className="flex items-center gap-4">
       <Link
@@ -57,14 +34,12 @@ export function NavUserActions() {
       >
         <ShoppingBag className="w-6 h-6" />
 
-        {productCount > 0 && (
-          <Badge
-            variant="destructive"
-            className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full p-0 text-[14px] font-bold"
-          >
-            {productCount}
-          </Badge>
-        )}
+        <Badge
+          variant="destructive"
+          className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full p-0 text-[14px] font-bold"
+        >
+          {productCount}
+        </Badge>
       </Link>
 
       {isLoggedIn ? (
@@ -74,11 +49,13 @@ export function NavUserActions() {
           </div>
         </div>
       ) : (
-        <Button className="cursor-pointer" onClick={handleAuthentication}>
+        <Button
+          className="cursor-pointer"
+          onClick={() => handleAuthentication()}
+        >
           Login
         </Button>
       )}
-
       <Model
         description="Please enter your credentials details!"
         isOpen={openAuth}
