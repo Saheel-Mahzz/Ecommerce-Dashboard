@@ -12,8 +12,6 @@ export default async function Products({
     getCategories(),
   ]);
 
-  console.log('prodcust',products)
-
   return (
     <div className="max-w-5xl mx-auto w-full my-7">
       <h2 className="text-3xl font-semibold text-center mb-6">Products</h2>

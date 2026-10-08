@@ -18,12 +18,11 @@ export function MobileNav() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-6 w-6" />
-          <span className="sr-only">Toggle menu</span>
-        </Button>
+      <SheetTrigger className="md:hidden p-2 hover:bg-accent rounded-md inline-flex items-center justify-center">
+        <Menu className="h-6 w-6" />
+        <span className="sr-only">Toggle menu</span>
       </SheetTrigger>
+
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <SheetHeader className="text-left mb-6">
           <SheetTitle className="font-bold text-lg">Navigation</SheetTitle>
